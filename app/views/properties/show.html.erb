@@ -17,7 +17,7 @@
 
 <p>
   <strong><%= t "activerecord.attributes.property.age" %>:</strong>
-  <%= pluralize(@property.age, t(".year")) if @property.present? %>
+  <%= pluralize(@property.age, t(".year")) if @property.age.present? %>
 </p>
 
 <p>

@@ -20,7 +20,7 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     if @property.save
-      redirect_to @property, notice: "Property was successfully created."
+      redirect_to @property, notice: t("flash.properties.create")
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update(property_params)
-      redirect_to @property, notice: "Property was successfully updated."
+      redirect_to @property, notice: t("flash.properties.update")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
-      redirect_to properties_url, notice: "Property was successfully destroyed."
+      redirect_to properties_url, notice: t("flash.properties.destroy")
   end
 
   private

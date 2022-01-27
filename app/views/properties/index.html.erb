@@ -26,7 +26,7 @@
         <td><%= property.note %></td>
         <td><%= link_to t("show"), property %></td>
         <td><%= link_to t("edit"), edit_property_path(property) %></td>
-        <td><%= link_to t("destroy"), property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t("destroy"), property, method: :delete, data: { confirm: t(".confirm_destroy") } %></td>
       </tr>
     <% end %>
   </tbody>

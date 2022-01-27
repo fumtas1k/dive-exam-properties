@@ -9,6 +9,7 @@ ja:
       yen: 円
       year: 年
       new: 物件を登録する
+      confirm_destroy: 本当に削除しますか?
     new:
       title: 物件登録
     form:
