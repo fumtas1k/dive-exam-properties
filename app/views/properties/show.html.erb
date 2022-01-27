@@ -7,7 +7,7 @@
 
 <p>
   <strong>Rent:</strong>
-  <%= @property.rent %>
+  <%= "#{number_with_delimiter(@property.rent)} yen" if @property.rent.present? %>
 </p>
 
 <p>
@@ -17,13 +17,31 @@
 
 <p>
   <strong>Age:</strong>
-  <%= @property.age %>
+  <%= pluralize(@property.age, "year") if @property.present? %>
 </p>
 
 <p>
   <strong>Note:</strong>
-  <%= @property.note %>
+  <%= simple_format(@property.note) %>
 </p>
+
+<hr>
+
+<% @property.nearest_stations.each_with_index do |nearest_station, index| %>
+  <h2>Nearest Station<%= index + 1 %></h2>
+  <p>
+    <strong>Line name</strong>
+    <%= nearest_station.line_name %>
+  </p>
+  <p>
+    <strong>Name</strong>
+    <%= nearest_station.name %>
+  </p>
+  <p>
+    <strong>Walking time</strong>
+    <%= pluralize(nearest_station.walking_time, "minute") if nearest_station.walking_time.present? %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_property_path(@property) %> |
 <%= link_to 'Back', properties_path %>
