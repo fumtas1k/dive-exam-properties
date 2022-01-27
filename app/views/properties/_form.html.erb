@@ -1,7 +1,10 @@
 <%= form_with(model: property, local: true) do |form| %>
   <% if property.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+      <h2>
+      <%= pluralize(property.errors.count, t(".error")) %>
+      <%= t ".error_message" %>
+      </h2>
 
       <ul>
         <% property.errors.full_messages.each do |message| %>
@@ -18,7 +21,8 @@
 
   <div class="field">
     <%= form.label :rent %>
-    <%= form.number_field :rent %>yen
+    <%= form.number_field :rent %>
+    <%= t ".yen" %>
   </div>
 
   <div class="field">
@@ -28,7 +32,8 @@
 
   <div class="field">
     <%= form.label :age %>
-    <%= form.number_field :age %>years
+    <%= form.number_field :age %>
+    <%= t ".years" %>
   </div>
 
   <div class="field">
@@ -39,7 +44,7 @@
   <hr>
 
   <%= form.fields_for :nearest_stations do |fields| %>
-    <h2>nearest_station<%= fields.index + 1 %></h2>
+    <h2><%= "#{t('activerecord.models.nearest_station')}#{fields.index + 1}" %></h2>
     <div class="field">
       <%= fields.label :line_name %>
       <%= fields.text_field :line_name %>
@@ -52,7 +57,8 @@
 
     <div class="field">
       <%= fields.label :walking_time %>
-      <%= fields.number_field :walking_time %>minutes
+      <%= fields.number_field :walking_time %>
+      <%= t ".minutes" %>
     </div>
   <% end %>
 

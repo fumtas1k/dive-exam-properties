@@ -1,0 +1,25 @@
+ja:
+  edit: 編集
+  show: 詳細
+  destroy: 削除
+  back: 戻る
+  properties:
+    index:
+      title: 物件一覧
+      yen: 円
+      year: 年
+      new: 物件を登録する
+    new:
+      title: 物件登録
+    form:
+      error: 件のエラー
+      error_message: があり、保存できません
+      yen: 円
+      years: 年
+      minutes: 分
+    show:
+      yen: 円
+      year: 年
+      minute: 分
+    edit:
+      title: 物件編集

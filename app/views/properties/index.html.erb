@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Properties</h1>
+<h1><%= t('.title') %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Rent</th>
-      <th>Address</th>
-      <th>Age</th>
-      <th>Note</th>
+      <th><%= t "activerecord.attributes.property.name" %></th>
+      <th><%= t "activerecord.attributes.property.rent" %></th>
+      <th><%= t "activerecord.attributes.property.address" %></th>
+      <th><%= t "activerecord.attributes.property.age" %></th>
+      <th><%= t "activerecord.attributes.property.note" %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,13 +18,15 @@
     <% @properties.each do |property| %>
       <tr>
         <td><%= property.name %></td>
-        <td><%= property.rent %></td>
+        <td><%= number_with_delimiter(property.rent) %>
+            <%= t ".yen" if property.rent.present? %>
+        </td>
         <td><%= property.address %></td>
-        <td><%= property.age %></td>
+        <td><%= pluralize(property.age, t(".year")) if property.age.present? %></td>
         <td><%= property.note %></td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t("show"), property %></td>
+        <td><%= link_to t("edit"), edit_property_path(property) %></td>
+        <td><%= link_to t("destroy"), property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Property', new_property_path %>
+<%= link_to t('.new'), new_property_path %>
