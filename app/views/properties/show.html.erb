@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t "activerecord.attributes.property.name" %>:</strong>
+  <%= @property.name %>
+</p>
+
+<p>
+  <strong><%= t "activerecord.attributes.property.rent" %>:</strong>
+  <%= "#{number_with_delimiter(@property.rent)} #{t('.yen')}" if @property.rent.present? %>
+</p>
+
+<p>
+  <strong><%= t "activerecord.attributes.property.address" %>:</strong>
+  <%= @property.address %>
+</p>
+
+<p>
+  <strong><%= t "activerecord.attributes.property.age" %>:</strong>
+  <%= pluralize(@property.age, t(".year")) if @property.age.present? %>
+</p>
+
+<p>
+  <strong><%= t "activerecord.attributes.property.note" %>:</strong>
+  <%= simple_format(@property.note) %>
+</p>
+
+<hr>
+
+<% @property.nearest_stations.each_with_index do |nearest_station, index| %>
+  <h2><%= "#{t('activerecord.models.nearest_station')}#{index + 1}" %></h2>
+  <p>
+    <strong><%= t "activerecord.attributes.nearest_station.line_name" %>:</strong>
+    <%= nearest_station.line_name %>
+  </p>
+  <p>
+    <strong><%= t "activerecord.attributes.nearest_station.name" %>:</strong>
+    <%= nearest_station.name %>
+  </p>
+  <p>
+    <strong><%= t "activerecord.attributes.nearest_station.walking_time" %>:</strong>
+    <%= pluralize(nearest_station.walking_time, t(".minute")) if nearest_station.walking_time.present? %>
+  </p>
+<% end %>
+
+<%= link_to t("edit"), edit_property_path(@property) %> |
+<%= link_to t("back"), properties_path %>

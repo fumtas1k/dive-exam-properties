@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= t('.title') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t "activerecord.attributes.property.name" %></th>
+      <th><%= t "activerecord.attributes.property.rent" %></th>
+      <th><%= t "activerecord.attributes.property.address" %></th>
+      <th><%= t "activerecord.attributes.property.age" %></th>
+      <th><%= t "activerecord.attributes.property.note" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.name %></td>
+        <td><%= number_with_delimiter(property.rent) %>
+            <%= t ".yen" if property.rent.present? %>
+        </td>
+        <td><%= property.address %></td>
+        <td><%= pluralize(property.age, t(".year")) if property.age.present? %></td>
+        <td><%= property.note %></td>
+        <td><%= link_to t("show"), property %></td>
+        <td><%= link_to t("edit"), edit_property_path(property) %></td>
+        <td><%= link_to t("destroy"), property, method: :delete, data: { confirm: t(".confirm_destroy") } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('.new'), new_property_path %>
